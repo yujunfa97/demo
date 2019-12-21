@@ -1,4 +1,4 @@
-.idea/*
+.idea
 # Created by https://www.gitignore.io/api/intellij,intellij+iml,maven,eclipse,macos,windows
 
 ###VS Code###
@@ -211,3 +211,5 @@ logs/
 
 # End of https://www.gitignore.io/api/intellij,intellij+iml,maven,eclipse,macos,windows
 *.pid
+/.idea/
+/.idea/
