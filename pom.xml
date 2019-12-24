@@ -29,6 +29,8 @@
     <modules>
         <module>boot</module>
         <module>test-module</module>
+        <module>eureka</module>
+        <module>eureka-client</module>
     </modules>
 
     <dependencyManagement>

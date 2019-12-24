@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: springcloudweb
+server:
+  port: 8088
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
