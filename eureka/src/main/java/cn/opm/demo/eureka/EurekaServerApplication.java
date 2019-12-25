@@ -20,5 +20,6 @@ public class EurekaServerApplication {
         SpringApplication application = new SpringApplication(EurekaServerApplication.class);
         application.addListeners(new ApplicationPidFileWriter());
         application.run(args);
+        System.err.println(System.getProperty("myTest"));
     }
 }
