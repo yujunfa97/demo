@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @ClassName Demo01
@@ -29,24 +30,25 @@ public class Demo01 {
         dataSource.setMaxActive(10);
         dataSource.setMaxWait(10000);
         Session session = new Session(dataSource);
-        Entity entity = new Entity("hutool_test");
-        entity.set("id", 1111);
-        entity.set("name", IdUtil.fastSimpleUUID());
-        entity.set("age", 20);
+//        Entity entity = new Entity("hutool_test");
+//        entity.set("id", 11110);
+//        entity.set("name", IdUtil.fastSimpleUUID());
+//        entity.set("age", 20);
+//        try {
+//            int rows = session.insert(entity);
+//            LOG.info("rows: " + rows);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            LOG.error(e.getMessage());
+//        }
         try {
-            int rows = session.insert(entity);
-            LOG.info("rows: " + rows);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        /*try {
             LOG.warn(String.valueOf(LOG.isDebugEnabled()));
             LOG.info(session.getConnection().toString());
             List<Entity> entities = session.findAll("hutool_test");
             entities.forEach(entity -> LOG.error(entity.toString()));
         } catch (SQLException e) {
             LOG.error(e.getMessage());
-        }*/
+        }
         dataSource.close();
     }
 }

@@ -1,0 +1,49 @@
+{
+  "properties": [
+    {
+      "name": "redis.cache.port",
+      "type": "java.lang.Integer",
+      "description": "redis port"
+    },
+    {
+      "name": "redis.cache.hostname",
+      "type": "java.lang.String",
+      "description": "redis port"
+    },
+    {
+      "name": "feign.hystrix.enabled",
+      "type": "java.lang.String",
+      "description": "A description for 'feign.hystrix.enabled'"
+    },
+    {
+      "name": "swagger.title",
+      "type": "java.lang.String",
+      "description": "A description for 'swagger.title'"
+    },
+    {
+      "name": "swagger.description",
+      "type": "java.lang.String",
+      "description": "A description for 'swagger.description'"
+    },
+    {
+      "name": "swagger.creator",
+      "type": "java.lang.String",
+      "description": "A description for 'swagger.creator'"
+    },
+    {
+      "name": "swagger.version",
+      "type": "java.lang.String",
+      "description": "A description for 'swagger.version'"
+    },
+    {
+      "name": "swagger.base-package",
+      "type": "java.lang.String",
+      "description": "A description for 'swagger.base-package'"
+    },
+    {
+      "name": "swagger.basepackage",
+      "type": "java.lang.String",
+      "description": "A description for 'swagger.basepackage'"
+    }
+  ]
+}

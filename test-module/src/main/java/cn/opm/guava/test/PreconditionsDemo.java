@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 public class PreconditionsDemo {
     public static final Logger LOGGER = LoggerFactory.getLogger(Preconditions.class);
     public static void main(String[] args) {
-        String tmp = System.getProperty("test");
-        System.out.println(tmp);
+        String tmp = System.getenv("path");
+        LOGGER.info(tmp);
     }
 }

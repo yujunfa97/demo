@@ -11,6 +11,10 @@
 
     <artifactId>eureka</artifactId>
 
+    <properties>
+        <docker.repository>registry.cn-hangzhou.aliyuncs.com/public/demo</docker.repository>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -34,27 +38,48 @@
         </dependencies>
     </dependencyManagement>
 
-    <!--<build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy-lib</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>1.4.12</version>
+                        <executions>
+                            <execution>
+                                <id>default</id>
+                                <goals>
+                                    <!--如果package时不想用docker打包,就注释掉这个goal-->
+                                    <!--<goal>build</goal>-->
+                                    <!--<goal>push</goal>-->
+                                </goals>
+                            </execution>
+                        </executions>
                         <configuration>
-                            <outputDirectory>target/lib</outputDirectory>
-                            <excludeTransitive>false</excludeTransitive>
-                            <stripVersion>false</stripVersion>
-                            <includeScope>runtime</includeScope>
+                            <contextDirectory>${project.basedir}</contextDirectory>
+                            <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                            <repository>${docker.repository}</repository>
+                            <tag>${project.version}</tag>
+                            <!--编译目录-->
+                            <buildDirectory>${project.basedir}/target</buildDirectory>
+                            <buildArgs>
+                                <!--提供参数向Dockerfile传递-->
+                                <PROJECT_FILE>./target/${project.artifactId}-${project.version}.tar</PROJECT_FILE>
+                            </buildArgs>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
@@ -80,99 +105,6 @@
                 </executions>
             </plugin>
         </plugins>
-    </build>-->
-
-    <build>
-        <finalName>${project.name}-${project.artifactId}-${project.version}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <filtering>false</filtering>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-        </resources>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>cn.opm.demo.eureka.EurekaServerApplication</mainClass>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                        <manifestEntries>
-                            <Class-Path>resources/</Class-Path>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
-                <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>${project.artifactId}-${project.version}</finalName>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <outputDirectory>${project.build.directory}/dist/</outputDirectory>
-                            <descriptors>
-                                <descriptor>src/assembly/assembly-descriptor.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
+
 </project>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

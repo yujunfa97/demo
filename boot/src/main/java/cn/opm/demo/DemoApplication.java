@@ -18,6 +18,5 @@ public class DemoApplication {
         SpringApplication application = new SpringApplication(DemoApplication.class);
         application.addListeners(new ApplicationPidFileWriter());
         application.run(args);
-
     }
 }
