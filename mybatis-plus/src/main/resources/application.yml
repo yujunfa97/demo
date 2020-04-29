@@ -6,9 +6,11 @@ spring:
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
     type: com.alibaba.druid.pool.DruidDataSource
     testWhileIdle: false
-logging:
-  level:
-    cn.opm.mybatis.mapper: debug
+  redis:
+    host: localhost
+    port: 6379
+    redisson:
+      config: classpath:redis-dev.yml
 mybatis-plus:
   mapper-locations: classpath:/mapperxml/**.xml
   global-config:
@@ -16,3 +18,5 @@ mybatis-plus:
       logic-delete-field: flag
       logic-delete-value: 1
       logic-not-delete-value: 0
+redisson:
+  address: redis://127.0.0.1:6379

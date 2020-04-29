@@ -26,4 +26,6 @@ public class User {
      * 邮箱
      */
     private String email;
+
+    private Boolean tmp;
 }

@@ -41,6 +41,13 @@ public class UserTests extends BaseTests {
 
     @Test
     public void iServiceTest() {
+        User user = userService.getById(112L);
+        System.out.println(user);
+//        User user = new User();
+//        user.setId(112L);
+//        user.setFlag(true);
+//        userMapper.insert(user);
+//        System.out.println(user);
         /*Page<User> userPage = new Page<>();
         userPage.setSize(4).setCurrent(2);
         userService.page(userPage).getRecords().forEach(System.out::println);*/
@@ -51,13 +58,13 @@ public class UserTests extends BaseTests {
         user.setEmail("12306@gmail.com");
         boolean flag = userService.save(user);
         System.out.println(flag);*/
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        userService.list().forEach(System.out::println);
+//        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+//        userService.list().forEach(System.out::println);
     }
 
     @Test
     public void test() {
-        User user = userMapper.getAllById(1L);
+/*        User user = userMapper.getAllById(1L);
         System.out.println(user);
         List<User> users = userMapper.getByAll(null);
         users.forEach(System.out::println);
@@ -86,6 +93,6 @@ public class UserTests extends BaseTests {
         page.setCurrent(2);
         IPage<User> userIPage  = userMapper.selectPageVo(page);
         System.out.println(userIPage.getTotal());
-        userIPage.getRecords().forEach(System.out::println);
+        userIPage.getRecords().forEach(System.out::println);*/
     }
 }

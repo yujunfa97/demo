@@ -37,6 +37,8 @@
         <module>jvm</module>
         <module>guava</module>
         <module>mybatis-plus</module>
+        <module>design-mode</module>
+        <module>redis</module>
     </modules>
 
     <dependencyManagement>
